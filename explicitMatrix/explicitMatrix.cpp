@@ -3375,14 +3375,28 @@ class Integrate: public Utilities {
         
     // Function to set the current integration timestep
         
-    static double getTimestep(){
-        
-        // Placeholder. The adaptive timestepping algorithm will go here. We should be
-        // able to use the neutrino transport adaptive timestepper that Aaron and Adam
-        // have been testing with suitable modification.  For now just 
-        // return a constant.
-        
-        double timestep = constant_dt;
+    static double getTimestep(double tru_cycle, double  cycle, double  dtprev, double  dt_grw, double  dt_dec, bool  restep)
+    {
+			//need to convert tru_cycle and cycle, check with Adam
+			//dt_dec = 0.93?
+			//dt_grw = 1.03?
+			//Is dtprev the correct variable
+		
+    		double timestep;
+    		tru_cycle = cycle + 1;
+		
+    			if (restep == 0)
+    			{
+        			cycle = cycle + 1;
+        			timestep = dt_grw * dtpre;
+    			}
+    			else
+    			{
+        			timestep = dt_dec * dtprev;
+        			restep = 0;
+    			}
+
+ //   return dt_new; language of early version for timestep
         return timestep;
     }
     
