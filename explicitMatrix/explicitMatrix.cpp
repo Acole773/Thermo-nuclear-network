@@ -3343,6 +3343,20 @@ class Integrate: public Utilities {
                         t, dtprior, dt, test1, test2, massChecker, sumX);
 
                     updatePopulations(dt);
+			/* 
+			Check value of SumX (should be 1)
+			utilities::returnSumX()
+			diff = abs(SumX-1)
+			tol = 1 +/- TBD
+			
+			if SumX is within tol
+			restep = false
+			
+			else
+			restep = true
+			
+			return restep
+			*/       
                     
                 }
             }
